@@ -46,7 +46,7 @@ for index, row in train_DF.iterrows():
 # print(train_DF.head())
 
 # epochs
-ep = 1000
+ep = 100
 
 # executing test script for ANN
 # nn = ANN.NeuralNetwork(2, 2, 2, hidden_layer_weights=[0.15, 0.2, 0.25, 0.3], hidden_layer_bias=0.35, output_layer_weights=[0.4, 0.45, 0.5, 0.55], output_layer_bias=0.6)
@@ -71,10 +71,24 @@ nnRow1 = ANN.NeuralNetwork(numInputs, numHiddenNeurons, numOutputs, hiddenWeight
 rowIndex = 0
 trainOUT = train_DF.iloc[rowIndex][-10:] 		# last 10 columns of targets
 trainIN = train_DF.iloc[rowIndex][1:-10]		# pixel input colummns
+print('trainIN:', type(trainIN))
+print(trainIN)
+print('trainOUT: ', type(trainOUT))
+print(trainOUT)
+trainIN_list = list(trainIN)
+trainOUT_list = list(trainOUT)
+print('trainIN_list:', type(trainIN_list))
+print(trainIN_list)
+print('trainOUT_list: ', type(trainOUT_list))
+print(trainOUT_list)
+# using data frame slices
+# for j in range(ep):
+# 	nnRow1.train(trainIN, trainOUT)
+# 	print(j, round(nnRow1.calculate_total_error([[trainIN, trainOUT]]), 9))
+#  using lists of data frame slices
 for j in range(ep):
-	nnRow1.train(trainIN, trainOUT)
-	print(i, round(nnRow1.calculate_total_error([[trainIN, trainOUT]]), 9))
-
+	nnRow1.train(trainIN_list, trainOUT_list)
+	print(j, round(nnRow1.calculate_total_error([[trainIN_list, trainOUT_list]]), 9))
 
 
 

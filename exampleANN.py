@@ -48,13 +48,13 @@ class NeuralNetwork:
         print('------')
 
     def feed_forward(self, inputs):
-        print('~~~ feed forward ~~inputs: ', inputs)
+        print('~~~ feed forward ~~')
         hidden_layer_outputs = self.hidden_layer.feed_forward(inputs)
         return self.output_layer.feed_forward(hidden_layer_outputs)
 
     # updating the weights after each training case
     def train(self, training_inputs, training_outputs):
-        print('~~~ train ~~~ training_inputs: ', training_inputs)
+        print('~~~ train ~~~')
         self.feed_forward(training_inputs)
 
         # 1. Output neuron deltas
@@ -128,7 +128,7 @@ class NeuronLayer:
             print('  Bias:', self.bias)
 
     def feed_forward(self, inputs):
-        print('~~~ NeuronLayer - feed_forward - inputs: ', inputs)
+        print('~~~ NeuronLayer - feed_forward')
         outputs = []
         for neuron in self.neurons:
             outputs.append(neuron.calculate_output(inputs))
@@ -155,17 +155,17 @@ class Neuron:
 
     def calculate_total_net_input(self):
         total = 0
-        print('~~~~ Neuron: calculate_total_net_input ~~~')
-        print('~~~~self.inputs = ', self.inputs)
+        # print('~~~~ Neuron: calculate_total_net_input ~~~')
+        # print('~~~~self.inputs = ', self.inputs)
         for i in range(len(self.inputs)):
             if i == 784:
                 total += self.inputs[i] * self.weights[i]
             else:
-                print('~ i:', i)
-                print('~~~~~~ self.inputs.iloc[i]: ', self.inputs.iloc[i])
-                print('~~~~~~ self.weights[i]: ', self.weights[i])
-                # total += self.inputs[i] * self.weights[i]
-                total += self.inputs.iloc[i] * self.weights[i]         # try using .iloc for inputs
+                # print('~ i:', i)
+                # print('~~~~~~ self.inputs.iloc[i]: ', self.inputs.iloc[i])
+                # print('~~~~~~ self.weights[i]: ', self.weights[i])
+                total += self.inputs[i] * self.weights[i]
+                # total += self.inputs.iloc[i] * self.weights[i]         # try using .iloc for inputs
         return total + self.bias
 
     # Apply the logistic function to squash the output of the neuron
