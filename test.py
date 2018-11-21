@@ -46,7 +46,7 @@ for index, row in train_DF.iterrows():
 # print(train_DF.head())
 
 # epochs
-ep = 100
+ep = 1000
 
 # executing test script for ANN
 # nn = ANN.NeuralNetwork(2, 2, 2, hidden_layer_weights=[0.15, 0.2, 0.25, 0.3], hidden_layer_bias=0.35, output_layer_weights=[0.4, 0.45, 0.5, 0.55], output_layer_bias=0.6)
@@ -56,7 +56,7 @@ ep = 100
 
 # testing ANN on row 1 of data frame
 numInputs = 784					# 785? or 784? <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ERROR index
-numHiddenNeurons = 2
+numHiddenNeurons = 100
 numOutputs = 10
 # make correct # of weights
 # hiddenWeights = [-0.01, -0.008, -0.006, -0.003, -0.001, 0.001, 0.003, 0.006, 0.008, 0.01]
@@ -71,27 +71,63 @@ nnRow1 = ANN.NeuralNetwork(numInputs, numHiddenNeurons, numOutputs, hiddenWeight
 rowIndex = 0
 trainOUT = train_DF.iloc[rowIndex][-10:] 		# last 10 columns of targets
 trainIN = train_DF.iloc[rowIndex][1:-10]		# pixel input colummns
-print('trainIN:', type(trainIN))
-print(trainIN)
-print('trainOUT: ', type(trainOUT))
-print(trainOUT)
+# print('trainIN:', type(trainIN))
+# print(trainIN)
+# print('trainOUT: ', type(trainOUT))
+# print(trainOUT)
 trainIN_list = list(trainIN)
 trainOUT_list = list(trainOUT)
-print('trainIN_list:', type(trainIN_list))
-print(trainIN_list)
-print('trainOUT_list: ', type(trainOUT_list))
-print(trainOUT_list)
+# print('trainIN_list:', type(trainIN_list))
+# print(trainIN_list)
+# print('trainOUT_list: ', type(trainOUT_list))
+# print(trainOUT_list)
 # using data frame slices
 # for j in range(ep):
 # 	nnRow1.train(trainIN, trainOUT)
 # 	print(j, round(nnRow1.calculate_total_error([[trainIN, trainOUT]]), 9))
 #  using lists of data frame slices
-for j in range(ep):
-	nnRow1.train(trainIN_list, trainOUT_list)
-	print(j, round(nnRow1.calculate_total_error([[trainIN_list, trainOUT_list]]), 9))
+# for j in range(ep):
+# 	nnRow1.train(trainIN_list, trainOUT_list)
+# 	print(j, round(nnRow1.calculate_total_error([[trainIN_list, trainOUT_list]]), 9))
 
-practiceTrain = nnRow1.predict(trainIN_list)
-print(practiceTrain)
+# for row in range(0,5):
+# 	trainINPUT = list(train_DF.iloc[row][1:-10])		# pixel input colummns
+# 	trainOUTPUT = list(train_DF.iloc[row][-10:])
+# 	for j in range(ep):
+# 		nnRow1.train(trainINPUT, trainOUTPUT)
+		# print(j, round(nnRow1.calculate_total_error([[trainIN_list, trainOUT_list]]), 9))
+
+
+# for row in range(0,5):
+# 	trainINPUT = list(train_DF.iloc[row][1:-10])		# pixel input colummns
+# 	trainOUTPUT = list(train_DF.iloc[row][-10:])
+# 	for j in range(ep):
+# 		nnRow1.train(trainINPUT, trainOUTPUT)
+
+
+for j in range(ep):
+	for row in range(0,5):
+		trainINPUT = list(train_DF.iloc[row][1:-10])		# pixel input colummns
+		trainOUTPUT = list(train_DF.iloc[row][-10:])
+		nnRow1.train(trainINPUT, trainOUTPUT)
+
+print('~~~~~ predicting image 0')
+practiceTrain = nnRow1.predict(list(train_DF.iloc[0][1:-10]))
+print('predicted: ',practiceTrain, '\tactual: ', train_DF.iloc[0][0])
+print('~~~~~ predicting image 1')
+practiceTrain1 = nnRow1.predict(list(train_DF.iloc[1][1:-10]))
+print('predicted: ',practiceTrain1, '\tactual: ', train_DF.iloc[1][0])
+print('~~~~~ predicting image 2')
+practiceTrain2 = nnRow1.predict(list(train_DF.iloc[2][1:-10]))
+print('predicted: ',practiceTrain2, '\tactual: ', train_DF.iloc[2][0])
+print('~~~~~ predicting image 3')
+practiceTrain3 = nnRow1.predict(list(train_DF.iloc[3][1:-10]))
+print('predicted: ',practiceTrain3, '\tactual: ', train_DF.iloc[3][0])
+print('~~~~~ predicting image 4')
+practiceTrain4 = nnRow1.predict(list(train_DF.iloc[4][1:-10]))
+print('predicted: ',practiceTrain4, '\tactual: ', train_DF.iloc[4][0])
+print(train_DF.head())
+
 
 
 

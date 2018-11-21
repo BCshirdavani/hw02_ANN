@@ -3,7 +3,8 @@ import math
 
 
 class NeuralNetwork:
-    LEARNING_RATE = 0.5
+    # LEARNING_RATE = 0.5
+    LEARNING_RATE = 0.05
 
     def __init__(self, num_inputs, num_hidden, num_outputs, hidden_layer_weights = None, hidden_layer_bias = None, output_layer_weights = None, output_layer_bias = None):
         self.num_inputs = num_inputs
@@ -117,15 +118,19 @@ class NeuralNetwork:
         # print('~~~ self.hidden_layer.neurons[1].weights[0]: ', self.hidden_layer.neurons[1].weights[0])
         # print('~~~ self.hidden_layer.neurons[1].calculate_output(inputs): ', self.hidden_layer.neurons[1].calculate_output(inputs))
         for h in range(0,len(self.hidden_layer.neurons)):
-            print('~ h: ', h)
+            # print('~ h: ', h)
             # h_val[h] = self.hidden_layer.neurons[h].calculate_output(inputs)
             h_val.append(self.hidden_layer.neurons[h].calculate_output(inputs))
         for o in range(0,len(self.output_layer.neurons)):
-            print('~~~ o: ', o)
+            # print('~~~ o: ', o)
             # o_val[o] = self.output_layer.neurons[o].calculate_output(h_val)
             o_val.append(self.output_layer.neurons[o].calculate_output(h_val))
         # should return the maximum of this o_val array
-        return o_val
+        # return o_val
+        indexOfMax = o_val.index(max(o_val))
+        print('~ predicted outputs: ', o_val)
+        return indexOfMax
+
 
 
 
