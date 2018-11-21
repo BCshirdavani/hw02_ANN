@@ -56,7 +56,7 @@ ep = 100
 
 # testing ANN on row 1 of data frame
 numInputs = 784					# 785? or 784? <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ERROR index
-numHiddenNeurons = 10
+numHiddenNeurons = 2
 numOutputs = 10
 # make correct # of weights
 # hiddenWeights = [-0.01, -0.008, -0.006, -0.003, -0.001, 0.001, 0.003, 0.006, 0.008, 0.01]
@@ -90,6 +90,8 @@ for j in range(ep):
 	nnRow1.train(trainIN_list, trainOUT_list)
 	print(j, round(nnRow1.calculate_total_error([[trainIN_list, trainOUT_list]]), 9))
 
+practiceTrain = nnRow1.predict(trainIN_list)
+print(practiceTrain)
 
 
 

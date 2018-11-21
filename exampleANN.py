@@ -48,13 +48,13 @@ class NeuralNetwork:
         print('------')
 
     def feed_forward(self, inputs):
-        print('~~~ feed forward ~~')
+        # print('~~~ feed forward ~~')
         hidden_layer_outputs = self.hidden_layer.feed_forward(inputs)
         return self.output_layer.feed_forward(hidden_layer_outputs)
 
     # updating the weights after each training case
     def train(self, training_inputs, training_outputs):
-        print('~~~ train ~~~')
+        # print('~~~ train ~~~')
         self.feed_forward(training_inputs)
 
         # 1. Output neuron deltas
@@ -107,6 +107,27 @@ class NeuralNetwork:
         return total_error
 
 
+    # after neural net is trained, predict a new label
+    def predict(self, inputs):
+        h_val = []
+        o_val = []
+        # print('~~~ len(self.hidden_layer.neurons): ', len(self.hidden_layer.neurons))
+        # print('~~~ self.hidden_layer.neurons[0].weights[0]: ', self.hidden_layer.neurons[0].weights[0])
+        # print('~~~ self.hidden_layer.neurons[0].calculate_output(inputs): ', self.hidden_layer.neurons[0].calculate_output(inputs))
+        # print('~~~ self.hidden_layer.neurons[1].weights[0]: ', self.hidden_layer.neurons[1].weights[0])
+        # print('~~~ self.hidden_layer.neurons[1].calculate_output(inputs): ', self.hidden_layer.neurons[1].calculate_output(inputs))
+        for h in range(0,len(self.hidden_layer.neurons)):
+            print('~ h: ', h)
+            # h_val[h] = self.hidden_layer.neurons[h].calculate_output(inputs)
+            h_val.append(self.hidden_layer.neurons[h].calculate_output(inputs))
+        for o in range(0,len(self.output_layer.neurons)):
+            print('~~~ o: ', o)
+            # o_val[o] = self.output_layer.neurons[o].calculate_output(h_val)
+            o_val.append(self.output_layer.neurons[o].calculate_output(h_val))
+        # should return the maximum of this o_val array
+        return o_val
+
+
 
 
 class NeuronLayer:
@@ -128,7 +149,7 @@ class NeuronLayer:
             print('  Bias:', self.bias)
 
     def feed_forward(self, inputs):
-        print('~~~ NeuronLayer - feed_forward')
+        # print('~~~ NeuronLayer - feed_forward')
         outputs = []
         for neuron in self.neurons:
             outputs.append(neuron.calculate_output(inputs))
