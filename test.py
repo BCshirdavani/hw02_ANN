@@ -46,7 +46,7 @@ for index, row in train_DF.iterrows():
 # print(train_DF.head())
 
 # epochs
-ep = 1000
+ep = 500
 
 # executing test script for ANN
 # nn = ANN.NeuralNetwork(2, 2, 2, hidden_layer_weights=[0.15, 0.2, 0.25, 0.3], hidden_layer_bias=0.35, output_layer_weights=[0.4, 0.45, 0.5, 0.55], output_layer_bias=0.6)
