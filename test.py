@@ -99,10 +99,10 @@ trainOUT_list = list(trainOUT)
 
 
 # for row in range(0,5):
-# 	trainINPUT = list(train_DF.iloc[row][1:-10])		# pixel input colummns
-# 	trainOUTPUT = list(train_DF.iloc[row][-10:])
-# 	for j in range(ep):
-# 		nnRow1.train(trainINPUT, trainOUTPUT)
+	# trainINPUT = list(train_DF.iloc[row][1:-10])		# pixel input colummns
+	# trainOUTPUT = list(train_DF.iloc[row][-10:])
+	# for j in range(ep):
+	# 	nnRow1.train(trainINPUT, trainOUTPUT)
 
 
 for j in range(ep):
