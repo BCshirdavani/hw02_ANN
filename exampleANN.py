@@ -128,7 +128,7 @@ class NeuralNetwork:
         # should return the maximum of this o_val array
         # return o_val
         indexOfMax = o_val.index(max(o_val))
-        print('~ predicted outputs: ', o_val)
+        # print('~ predicted outputs: ', o_val)
         return indexOfMax
 
 
@@ -176,6 +176,7 @@ class Neuron:
 
     def calculate_output(self, inputs):
         self.inputs = inputs
+        # print('~~~~~~ calc inputs ', inputs)
         self.output = self.squash(self.calculate_total_net_input())
         return self.output
 
@@ -197,7 +198,13 @@ class Neuron:
     # Apply the logistic function to squash the output of the neuron
     # The result is sometimes referred to as 'net' [2] or 'net' [1]
     def squash(self, total_net_input):
-        return 1 / (1 + math.exp(-total_net_input))
+    	# modified this, since anything above 700 crashed the program...
+    	if total_net_input < -700:
+    		# print('~~~ squashing ', total_net_input, ', greater than e^700 crashes python...rounding to e^700')
+    		return 1 / (1 + math.exp(700))
+    	else:
+    		return 1 / (1 + math.exp(-total_net_input))
+    		
 
     # Determine how much the neuron's total input has to change to move closer to the expected output
     #
