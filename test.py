@@ -78,9 +78,9 @@ print('TEST DATA:\n', test_DF.head())
 print('training data length:',len(train_DF.index))
 print('test data length:',len(test_DF.index))
 print('epocks: ', ep)
-print('data rows divided by 10...ever 10th row used')
+print('data rows divided by 9...every 9th row used')
 # Test accuracy using varying amounts of hidden nodes
-hiddenArray = [1,2,5,10,15,20,40]
+hiddenArray = [1,2,5,10,15,20,40,80]
 # hiddenArray = [10]
 accuracyArray = []
 timeArray = []
@@ -99,7 +99,7 @@ for x in hiddenArray:
 		# print('~~~ training epock: ', j)
 		for row in range(0,len(train_DF.index)):
 			# data is too big, must slice it down by a fraction
-			if row % 10 == 1:
+			if row % 9 == 1:
 				# print('~~~~~~~~ training row:',row)
 				trainINPUT = list(train_DF.iloc[row][1:-10])		# pixel input colummns
 				trainOUTPUT = list(train_DF.iloc[row][-10:])
